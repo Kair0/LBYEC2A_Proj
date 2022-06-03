@@ -19,6 +19,8 @@ int main() {
 		logo();
 		printf("===INVALID CREDENTIALS! TRY AGAIN!===\n");
 	}
+	system("cls");
+	logo();
 	displayMenu();
 	return 0;
 }

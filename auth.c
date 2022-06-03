@@ -1,7 +1,7 @@
 #include "auth.h"
 
 //username, password
-char adminInfo[][2][20] = {
+char adminInfo[][2][STRLENGTH] = {
 	{"adminKAID","3l3ctr0n!cS"},
 	{"adminJMGGA","3ngIn3Er1nG"},
 	{"adminMG","PR0f35$0r"},
@@ -14,8 +14,8 @@ char adminInfo[][2][20] = {
 */
 
 int authenticate() {
-	char username[20];
-	char password[20];
+	char username[STRLENGTH];
+	char password[STRLENGTH];
 	
 	printf("Username: ");
 	scanf("%s", username);

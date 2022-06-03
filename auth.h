@@ -1,3 +1,4 @@
-# include "menu.h"
+#include "menu.h"
+#define STRLENGTH 20
 
 int authenticate();
