@@ -1,7 +1,6 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "menu.h"
-
+#include "auth.h"
 
 void logo() {
 /**
@@ -15,6 +14,11 @@ void logo() {
 	
 int main() {
 	logo();
+	while(authenticate()) {
+		system("cls");
+		logo();
+		printf("===INVALID CREDENTIALS! TRY AGAIN!===\n");
+	}
 	displayMenu();
 	return 0;
 }

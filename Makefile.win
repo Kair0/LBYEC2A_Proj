@@ -1,0 +1,34 @@
+# Project: LBYEC2A_Proj
+# Makefile created by Embarcadero Dev-C++ 6.3
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = build/main.o build/menu.o build/auth.o
+LINKOBJ  = build/main.o build/menu.o build/auth.o
+LIBS     = -L"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib" -L"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc -g3
+INCS     = -I"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
+CXXINCS  = -I"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
+BIN      = build/LBYEC2A_Proj.exe
+CXXFLAGS = $(CXXINCS) -g3
+CFLAGS   = $(INCS) -g3
+DEL      = E:\Program Files (x86)\Embarcadero\Dev-Cpp\DevCpp.exe INTERNAL_DEL
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${DEL} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+build/main.o: main.c
+	$(CC) -c main.c -o build/main.o $(CFLAGS)
+
+build/menu.o: menu.c
+	$(CC) -c menu.c -o build/menu.o $(CFLAGS)
+
+build/auth.o: auth.c
+	$(CC) -c auth.c -o build/auth.o $(CFLAGS)

@@ -24,6 +24,29 @@ char menu[][3][40] = {
 	{"020","Bipolaroid Camera Go","PHP 15,250.67"}
 };
 
+float price[] = {
+	44990.00,
+	27990.00,
+	69999.00,
+	91256.72,
+	115320.18,
+	49990.00,
+	14990.00,
+	7938.42,
+	27607.77,
+	54990.00,
+	2620.25,
+	26156.83,
+	7690.00,
+	9990.00,
+	88999.00,
+	19856.76,
+	9902.18,
+	149999.00,
+	59380.00,
+	15250.67
+};
+
 //prints the item code, menu and the price
 void displayMenu() {
 	int row, column;
@@ -44,5 +67,10 @@ void displayMenu() {
 		}
 		printf("\n");
 	}
+}
+
+//Takes the price of an item depending on the code
+float getPrice(int itemCode) {
+	return price[itemCode-1];
 }
 
