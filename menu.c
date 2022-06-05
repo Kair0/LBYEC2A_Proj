@@ -1,27 +1,27 @@
 #include "menu.h"
 
 //itemCode,itemName,itemPrice
-char menu[][3][40] = {
-	{"001","Banana JPhone 13", "PHP 44 990.00"},
-	{"002","Samsing Milkyway 20","PHP 27 990.00"},
-	{"003","Highway P50","PHP 69 999.00"},
-	{"004","GG 55in Television LED Display","PHP 91 256.72"},
-	{"005","Samsing 55in Television OLED Display","PHP 115 320.18"},
-	{"006","Banana JWatch Series 6","PHP 49 990.00"},
-	{"007","Samsing Milkyway Watch 4","PHP 14 990.00"},
-	{"008","DaMianBao Note 10","PHP 7 938.42"},
-	{"009","SleepStation 5 Pro","PHP 27 607.77"},
-	{"010","SpaghettiBook Air","PHP 54 990.00"},
-	{"011","LandWall Portable 1TB Hard Drive","PHP 2 620.25"},
-	{"012","Ybox  Series Y","PHP 26 156.83"},
-	{"013","Waterpods Pro","PHP 7 690.00"},
-	{"014","Samsing Earbuds Pro","PHP 9 990.00"},
-	{"015","SUSA Vivabook Pro 16x","PHP 88 999.00"},
-	{"016","Boss Noise Cancelling Headphones 700","PHP 19 856.76"},
-	{"017","LBJ Flip 3 Portable Bluetooth Speaker","PHP 9 902.18"},
-	{"018","Sory Camera Alpha 9","PHP 149 999.00"},
-	{"019","GonePro Villain 10","PHP 59 380.00"},
-	{"020","Bipolaroid Camera Go","PHP 15,250.67"}
+char menu[][3][ITEMLENGTH] = {
+	{"001","Banana JPhone 13", "44,990.00"},
+	{"002","Samsing Milkyway 20","27,990.00"},
+	{"003","Highway P50","69,999.00"},
+	{"004","GG 55in Television LED Display","91,256.72"},
+	{"005","Samsing 55in Television OLED Display","95,320.18"},
+	{"006","Banana JWatch Series 6","49,990.00"},
+	{"007","Samsing Milkyway Watch 4","14,990.00"},
+	{"008","DaMianBao Note 10","7,938.42"},
+	{"009","SleepStation 5 Pro","27,607.77"},
+	{"010","SpaghettiBook Air","54,990.00"},
+	{"011","LandWall Portable 1TB Hard Drive","2,620.25"},
+	{"012","Ybox  Series Y","26,156.83"},
+	{"013","Waterpods Pro","7,690.00"},
+	{"014","Samsing Earbuds Pro","9,990.00"},
+	{"015","SUSA Vivabook Pro 16x","88,999.00"},
+	{"016","Boss Noise Cancelling Headphones 700","19,856.76"},
+	{"017","LBJ Flip 3 Portable Bluetooth Speaker","9,902.18"},
+	{"018","Sory Camera Alpha 9","149,999.00"},
+	{"019","GonePro Villain 10","59,380.00"},
+	{"020","Bipolaroid Camera Go","15,250.67"}
 };
 
 float price[] = {
@@ -29,7 +29,7 @@ float price[] = {
 	27990.00,
 	69999.00,
 	91256.72,
-	115320.18,
+	95320.18,
 	49990.00,
 	14990.00,
 	7938.42,
@@ -48,24 +48,29 @@ float price[] = {
 };
 
 //prints the item code, menu and the price
-void displayMenu() {
+void listMenu() {
 	int row, column;
-	for (row=0; row<20; row++) {
+	for (row=0; row<MENULENGTH; row++) {
 		for (column=0; column<3; column++) {
 			//checks if column index is at itemName
 			if(column == 1) {
 				//fills up the string with white spaces for layout purposes
-				char itemName[40] = "";
+				char itemName[ITEMLENGTH] = "";
 				strcat(itemName,menu[row][column]);
-				for(int i = 0; strlen(itemName) < 40; i++) {
+				for(int i = 0; strlen(itemName) < ITEMLENGTH; i++) {
 					strcat(itemName," ");
 				}
-				printf("%s\t", itemName);
+				printf("   %s", itemName);
 			} else {
-				printf("%s\t", menu[row][column]);
+				printf("%s", menu[row][column]);
 			}	
 		}
-		printf("\n");
+		
+		if (row%2) {
+			printf("\n");
+		} else {
+			printf("\t   ");
+		}
 	}
 }
 

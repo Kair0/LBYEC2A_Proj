@@ -5,6 +5,7 @@ char adminInfo[][2][STRLENGTH] = {
 	{"adminKAID","3l3ctr0n!cS"},
 	{"adminJMGGA","3ngIn3Er1nG"},
 	{"adminMG","PR0f35$0r"},
+	{"admin", "admin"} //this is temporary
 };
 
 /*
@@ -23,8 +24,8 @@ int authenticate() {
 	int acceptPassword = 0;
 	int userIndex;
 	
-	for (int i = 0; i < 3; i++) {
-		if (strcmp(username, adminInfo[i][0]) == 0) {
+	for (int i = 0; i < 4; i++) { //change 4 to 3 if "admin" user will be remove
+		if (!strcmp(username, adminInfo[i][0])) {
 			acceptPassword = 1;
 			userIndex = i;
 		}

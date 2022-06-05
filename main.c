@@ -1,26 +1,34 @@
-#include <stdlib.h>
 #include "menu.h"
 #include "auth.h"
+#include "display.h"
+#include "options.h"
 
-void logo() {
-/**
- * This is a FigLET Font Generated through the use of https://patorjk.com/software/taag/#p=display&v=2&c=c&f=Cybermedium&t=J%26K's%20Electronics.
- * Modifications with the text were made in order to allow printing in console.
- */
-	printf("  _ _  _ . ____    ____ _    ____ ____ ___ ____ ____ _  _ _ ____ ____\n");
-	printf("  | |_/  ' [__     |___ |    |___ |     |  |__/ |  | |\\ | | |    [__ \n");
-	printf(" _| | \\_   ___]    |___ |___ |___ |___  |  |  \\ |__| | \\| | |___ ___] \n\n");
-}
-	
 int main() {
-	logo();
-	while(authenticate()) {
-		system("cls");
-		logo();
-		printf("===INVALID CREDENTIALS! TRY AGAIN!===\n");
+	int run = 1;
+	
+	while(run) {
+		//login authentication wont proceed to the next code if not validated
+		displayLogo();
+		while(authenticate()) {
+			system("cls");
+			displayLogo();
+			printf("===INVALID CREDENTIALS! TRY AGAIN!===\n");
+		}
+		
+		//Shows option if validated
+		switch(options()) {
+			case 1:
+				printf("Taking order...");
+				run = 0; //will be removed once taking order option is added
+				break;
+			case 2:
+				run = 1;
+				system("cls");
+				break;
+			case 3:
+				run = 0;
+				break;
+		}	
 	}
-	system("cls");
-	logo();
-	displayMenu();
-	return 0;
+	return 1;
 }
