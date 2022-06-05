@@ -31,7 +31,7 @@ void displayMenu() {
 	system("cls");
 	displayLogo();
 	displayBorder(WIDTH,'*');
-	displayCenterTitle("MENU\n\n");
+	displayCenterTitle("PRODUCT LIST\n\n");
 	listMenu();
 	displayBorder(WIDTH,'*');
 }
@@ -42,4 +42,35 @@ void displayOptions() {
 	displayCenterTitle("01 Take Order  \n");
 	displayCenterTitle("02 Log Out     \n");
 	displayCenterTitle("03 Exit Program\n");
+}
+
+void displayEdit(float total) {
+	system("cls");
+	displayLogo();
+	displayBorder(WIDTH,'*');
+	displayCenterTitle("EDIT MODE\n\n");
+	listOrder();
+	displayBorder(WIDTH,'*');
+	displayCenterTitle("TOTAL: PHP ");
+	printf("%.2f\n",total);
+}
+
+void displayReceipt(){
+	system("cls");
+	displayLogo();
+	displayBorder(WIDTH,'*');
+	displayCenterTitle("RECEIPT\n\n");
+	listReceipt();
+	displayBorder(WIDTH,'*');
+}
+
+void displayTakeOrder(float total){
+	displayMenu();
+	displayCenterTitle("TOTAL: PHP ");
+	printf("%.2f\n",total);
+}
+
+void displayError(int allow, char errorMsg[]) {
+	if (allow)
+		printf("%s", errorMsg);
 }

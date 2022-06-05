@@ -76,6 +76,16 @@ void listMenu() {
 
 //Takes the price of an item depending on the code
 float getPrice(int itemCode) {
-	return price[itemCode-1];
+	return price[itemCode];
+}
+
+/*
+	details = 0 : item code
+	details = 1: item name
+	details = 2: item price
+*/
+int printMenuDetails(int itemCode, int details) {
+	printf("%s",menu[itemCode][details]);
+	return strlen(menu[itemCode][details]);
 }
 
