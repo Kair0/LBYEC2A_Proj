@@ -40,6 +40,12 @@ int main() {
 				break;
 		}
 		
+		/*
+			Option to reset the whole program when finish
+			1: reset
+			2: logout
+			3: exit
+		*/
 		if (allowReset) {
 			switch(reset()) {
 				case 1:
@@ -47,6 +53,7 @@ int main() {
 					allowAuth = 0;
 					break;
 				case 2:
+					system("cls");
 					run = 1;
 					allowAuth = 1;
 					break;
