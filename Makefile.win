@@ -12,7 +12,7 @@ CXXINCS  = -I"E:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"
 BIN      = build/LBYEC2A_Proj.exe
 CXXFLAGS = $(CXXINCS) -g3
 CFLAGS   = $(INCS) -g3
-DEL      = E:\Program Files (x86)\Embarcadero\Dev-Cpp\DevCpp.exe INTERNAL_DEL
+DEL      = E:\Program Files (x86)\Embarcadero\Dev-Cpp\devcpp.exe INTERNAL_DEL
 
 .PHONY: all all-before all-after clean clean-custom
 

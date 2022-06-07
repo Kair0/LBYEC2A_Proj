@@ -35,7 +35,7 @@ int authenticate() {
 	int acceptPassword = 0;
 	int userIndex;
 	
-	for (int i = 0; i < 4; i++) { //change 4 to 3 if "admin" user will be remove
+	for (int i = 0; i < 4; i++) { //change 4 to 3 if "admin" user will be remove (sizeof) should be used though idk if sir will allow
 		if (!strcmp(username, adminInfo[i][0])) {
 			acceptPassword = 1;
 			userIndex = i;
@@ -56,7 +56,7 @@ int authMember() {
 	int run = 1;
 	
 	while (run) {
-		printf("Membership ID: ");
+		printf("Membership ID (type X to cancel): ");
 		scanf("%s", member);
 
 		for (int i = 0; i < 5; i++) {

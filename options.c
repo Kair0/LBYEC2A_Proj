@@ -46,13 +46,23 @@ void takeOrder() {
 			int addOption = 0;
 			
 			displayTakeOrder(total);
-			displayError(error, "===INVALID OPTION! TRY AGAIN!===\n");
+			
 			printf("\nEnter Order: ");
 			scanf("%s", itemCode);
 			
 			if(codeInt(itemCode) != -1) {
-				printf("Enter Quantity: ");
-				scanf("%d", &qty);
+				
+				int errorQty = 1;
+				
+				//Error Checking for QTY
+				do {		
+					printf("Enter Quantity: ");
+					scanf("%d", &qty);
+					if(qty>0)
+						errorQty = 0;
+					displayError(errorQty, "===INVALID QUANTITY! TRY AGAIN!===\n");
+				} while (errorQty);
+					
 				orderList[orderNumber][0] = codeInt(itemCode);
 				orderList[orderNumber][1] = qty;
 				total += orderList[orderNumber][1]*getPrice(codeInt(itemCode));
@@ -123,9 +133,17 @@ void editOrder() {
 				if(itemCode>orderNumber) {
 					error = 1;
 					break;
-				}
-				printf("Enter Quantity: ");
-				scanf("%d", &qty);
+				}			
+				//Error Checking for QTY
+				int errorQty = 1;
+				do {		
+					printf("Enter Quantity: ");
+					scanf("%d", &qty);
+					if(qty>0)
+						errorQty = 0;
+					displayError(errorQty, "===INVALID QUANATITY! TRY AGAIN!===\n");
+				} while (errorQty);
+				
 				total -= orderList[itemCode][1]*getPrice(orderList[itemCode][0]);
 				orderList[itemCode][1] = qty;
 				total += orderList[itemCode][1]*getPrice(orderList[itemCode][0]);
