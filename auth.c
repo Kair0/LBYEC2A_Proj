@@ -41,10 +41,24 @@ int authenticate() {
 			userIndex = i;
 		}
 	}
-	
-	getchar();
+
 	printf("Password: ");
-	scanf("%s", password);
+	//hides password
+	int x = 0;
+	while(x < STRLENGTH && x >= 0) {
+		password[x] = getch();		
+		if(password[x] == '\b') {
+			x--;
+			printf("\b \b");
+		} else if(password[x] == '\r') {
+			password[x] = '\0';
+			break;
+		} else {
+			printf("*");
+			x++;	
+		}
+	}
+	
 	if (acceptPassword && strcmp(password, adminInfo[userIndex][1]) == 0) 
 		return 0;
 	else
