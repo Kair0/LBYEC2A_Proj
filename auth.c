@@ -32,12 +32,12 @@ int authenticate() {
 	printf("Username: ");
 	scanf("%s", username);
 	
-	int acceptPassword = 0;
+	int acceptUser = 0;
 	int userIndex;
 	
 	for (int i = 0; i < 4; i++) { //change 4 to 3 if "admin" user will be remove (sizeof) should be used though idk if sir will allow
 		if (!strcmp(username, adminInfo[i][0])) {
-			acceptPassword = 1;
+			acceptUser = 1;
 			userIndex = i;
 		}
 	}
@@ -59,7 +59,7 @@ int authenticate() {
 		}
 	}
 	
-	if (acceptPassword && strcmp(password, adminInfo[userIndex][1]) == 0) 
+	if (acceptUser && strcmp(password, adminInfo[userIndex][1]) == 0) 
 		return 0;
 	else
 		return 1;
