@@ -44,7 +44,7 @@ void displayOptions() {
 	displayCenterTitle("03 Exit Program\n");
 }
 
-void displayEdit(float total, int orderList[99][2], int orderNumber) {
+void displayEdit(int orderList[99][2], int orderNumber) {
 	system("cls");
 	displayLogo();
 	displayBorder(WIDTH,'*');
@@ -52,7 +52,6 @@ void displayEdit(float total, int orderList[99][2], int orderNumber) {
 	listOrder(orderList, orderNumber);
 	displayBorder(WIDTH,'*');
 	displayCenterTitle("TOTAL: PHP ");
-	printf("%.2f\n",total);
 }
 
 void displayReceipt(int orderList[99][2], int orderNumber, float total, float discount, float cashPaid){
@@ -60,14 +59,13 @@ void displayReceipt(int orderList[99][2], int orderNumber, float total, float di
 	displayLogo();
 	displayBorder(WIDTH,'*');
 	displayCenterTitle("RECEIPT\n\n");
-	listReceipt(orderList, orderNumber, total, discount, cashPaid);
-	displayBorder(WIDTH,'*');
+	listReceipt(orderList, orderNumber);
 }
 
-void displayTakeOrder(float total){
+void displayTakeOrder(){
 	displayMenu();
 	displayCenterTitle("TOTAL: PHP ");
-	printf("%.2f\n",total);
+	
 }
 
 void displayError(int allow, char errorMsg[]) {

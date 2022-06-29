@@ -54,6 +54,12 @@ int authenticate() {
 		return 1;
 }
 
+
+/*
+	This function membership for discounts
+	returns a value of 0 if the input was valid
+	reurns a value of 1 if the input was invalid
+*/
 int authMember() {
 	
 	//membership ID: ID Number, Validity (T-Active, F-Inactive)
