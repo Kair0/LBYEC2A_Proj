@@ -1,31 +1,20 @@
 #include "auth.h"
 
-//username, password
-char adminInfo[][2][STRLENGTH] = {
-	{"adminKAID","3l3ctr0n!cS"},
-	{"adminJMGGA","3ngIn3Er1nG"},
-	{"adminMG","PR0f35$0r"},
-	{"admin", "admin"} //this is temporary
-};
-
-//membership ID: ID Number, Validity (T-Active, F-Inactive)
-char memberID[][2][STRLENGTH] = {
-	{"20220908011","INACTIVE"},
-	{"20210526834","ACTIVE"},
-	{"20201217390","ACTIVE"},
-	{"20220329385","INACTIVE"},
-	{"20211101347","ACTIVE"}
-
-};
-
-
-
 /*
 	This function authenthicates user loging
 	returns a value of 0 if the input was valid
 	reurnss a value of 1 if the input was invalid
 */
 int authenticate() {
+	
+	//username, password
+	char adminInfo[][2][STRLENGTH] = {
+		{"adminKAID","3l3ctr0n!cS"},
+		{"adminJMGGA","3ngIn3Er1nG"},
+		{"adminMG","PR0f35$0r"},
+		{"admin", "admin"} //this is temporary
+	};
+	
 	char username[STRLENGTH];
 	char password[STRLENGTH];
 	
@@ -66,6 +55,17 @@ int authenticate() {
 }
 
 int authMember() {
+	
+	//membership ID: ID Number, Validity (T-Active, F-Inactive)
+	char memberID[][2][STRLENGTH] = {
+		{"20220908011","INACTIVE"},
+		{"20210526834","ACTIVE"},
+		{"20201217390","ACTIVE"},
+		{"20220329385","INACTIVE"},
+		{"20211101347","ACTIVE"}
+	
+	};
+	
 	char member[STRLENGTH];
 	int run = 1;
 	
