@@ -2,11 +2,6 @@
 #include "options.h"
 
 //itemcode, qty
-int orderList[99][2];
-int orderNumber = 0;
-float total = 0.0;
-float cashPaid = 0.0;
-float discount = 0.0;
 
 int options() {
 	int run = 1;
@@ -31,11 +26,16 @@ int options() {
 	}
 }
 
-
-
 void takeOrder() {
 	int run = 1;
 	int error = 0;
+	int orderList[99][2];
+	int orderNumber = 0;
+	float total = 0.0;
+	float cashPaid = 0.0;
+	float discount = 0.0;
+	orderList[0][0] = 0;
+	orderList[0][1] = 0;
 	
 	while(run) {		
 		//shows error code if there is a wrong input
@@ -77,14 +77,107 @@ void takeOrder() {
 							orderNumber++;
 							promptRun = 0;
 							break;
-						case 2:
-							getReceipt();
+						case 2: {
+							int runReceipt = 1;
+							int errorReceipt = 0;
+							while(runReceipt) {
+								system("cls");
+								displayError(errorReceipt, "===INVALID OPTION! TRY AGAIN!===\n");
+								
+								int option = 0;
+								
+								int promptRun = 1;
+								while (promptRun) {
+									switch(threeChociePrompt("Discount?", "None", "Seniors/PWD" ,"Member")) {
+										case 1:
+											getCash(cashPaid,total);
+											discount = 0.0;
+											displayReceipt(orderList, orderNumber, total, discount, cashPaid);
+											promptRun = 0;
+											runReceipt = 0;
+											break;
+										case 2:
+											getCash(cashPaid,total);
+											discount = 15.0;
+											displayReceipt(orderList, orderNumber, total, discount, cashPaid);
+											promptRun = 0;
+											runReceipt = 0;
+											break;
+										case 3:
+											getCash(cashPaid,total);
+											discount = 10.0;
+											if(authMember()) {
+												displayReceipt(orderList, orderNumber, total, discount, cashPaid);
+												promptRun = 0;
+												runReceipt = 0;
+											}
+											break;
+										default:
+											errorReceipt = 1;
+											break;
+									}	
+								}
+							}
 							promptRun = 0;
 							run = 0;
 							break;
-						case 3:
-							editOrder();
+						}	
+						case 3: {
+							int runEdit = 1;
+							int errorEdit = 0;
+							
+							while(runEdit) {
+															
+								int option = 0;
+								int qty = 0;
+								int itemCode;
+								
+								displayEdit(total,orderList,orderNumber);
+								displayError(errorEdit, "===INVALID OPTION! TRY AGAIN!===\n");
+								switch(threeChociePrompt("Choose an Option", "Change Qty", "Remove" ,"Exit")) {
+									case 1:
+										printf("Enter Item Number: ");
+										scanf("%d", &itemCode);
+										if(itemCode>orderNumber) {
+											errorEdit = 1;
+											break;
+										}			
+										//Error Checking for QTY
+										int errorQty = 1;
+										do {		
+											printf("Enter Quantity: ");
+											scanf("%d", &qty);
+											if(qty>0)
+												errorQty = 0;
+											displayError(errorQty, "===INVALID QUANATITY! TRY AGAIN!===\n");
+										} while (errorQty);
+										total -= orderList[itemCode][1]*getPrice(orderList[itemCode][0]);
+										orderList[itemCode][1] = qty;
+										total += orderList[itemCode][1]*getPrice(orderList[itemCode][0]);
+										errorEdit = 0;
+										break;
+									case 2:
+										printf("Enter Item Number: ");
+										scanf("%d", &itemCode);
+										if(itemCode>orderNumber) {
+											errorEdit = 1;
+											break;
+										}
+										total -= orderList[itemCode][1]*getPrice(orderList[itemCode][0]);
+										orderList[itemCode][0] = -1;
+										errorEdit = 0;
+										break;
+									case 3:
+										runEdit = 0;
+										orderNumber++;
+										break;
+									default:
+										errorEdit = 1;
+										break;
+								}
+							}
 							break;
+						}
 					}
 				}
 			} 
@@ -95,7 +188,7 @@ void takeOrder() {
 }
 
 
-void listOrder() {
+void listOrder(int orderList[99][2], int orderNumber) {
 	int row = 0;
 	for (row; row <= orderNumber; row++) {
 		printf("Item Number:%d", row);
@@ -115,106 +208,8 @@ void listOrder() {
 	}
 }
 
-void editOrder() {
-	int run = 1;
-	int error = 0;
-	while(run) {
-		displayEdit(total);
-		displayError(error, "===INVALID OPTION! TRY AGAIN!===\n");
-		
-		int option = 0;
-		int qty = 0;
-		int itemCode;
-		
-		switch(threeChociePrompt("Choose an Option", "Change Qty", "Remove" ,"Exit")) {
-			case 1:
-				printf("Enter Item Number: ");
-				scanf("%d", &itemCode);
-				if(itemCode>orderNumber) {
-					error = 1;
-					break;
-				}			
-				//Error Checking for QTY
-				int errorQty = 1;
-				do {		
-					printf("Enter Quantity: ");
-					scanf("%d", &qty);
-					if(qty>0)
-						errorQty = 0;
-					displayError(errorQty, "===INVALID QUANATITY! TRY AGAIN!===\n");
-				} while (errorQty);
-				
-				total -= orderList[itemCode][1]*getPrice(orderList[itemCode][0]);
-				orderList[itemCode][1] = qty;
-				total += orderList[itemCode][1]*getPrice(orderList[itemCode][0]);
-				error = 0;
-				break;
-			case 2:
-				printf("Enter Item Number: ");
-				scanf("%d", &itemCode);
-				if(itemCode>orderNumber) {
-					error = 1;
-					break;
-				}
-				total -= orderList[itemCode][1]*getPrice(orderList[itemCode][0]);
-				orderList[itemCode][0] = -1;
-				error = 0;
-				break;
-			case 3:
-				run = 0;
-				orderNumber++;
-				break;
-			default:
-				error = 1;
-				break;
-		}
-	}
-}
 
-void getReceipt() {
-	int run = 1;
-	int error = 0;
-	while(run) {
-		system("cls");
-		displayError(error, "===INVALID OPTION! TRY AGAIN!===\n");
-		
-		int option = 0;
-		
-		int promptRun = 1;
-		while (promptRun) {
-			switch(threeChociePrompt("Discount?", "None", "Seniors/PWD" ,"Member")) {
-				case 1:
-					getCash();
-					discount = 0.0;
-					displayReceipt();
-					promptRun = 0;
-					run = 0;
-					break;
-				case 2:
-					getCash();
-					discount = 15.0;
-					displayReceipt();
-					promptRun = 0;
-					run = 0;
-					break;
-				case 3:
-					getCash();
-					discount = 10.0;
-					if(authMember()) {
-						displayReceipt();
-						promptRun = 0;
-						run = 0;
-					}
-					break;
-				default:
-					error = 1;
-					break;
-			}	
-		}
-	}
-}
-
-void listReceipt() {
+void listReceipt(int orderList[99][2], int orderNumber, float total, float discount, float cashPaid) {
 	int row = 0;
 	for (row; row <= orderNumber; row++) {
 		if(orderList[row][0]!=-1) {
@@ -240,7 +235,7 @@ void listReceipt() {
 	printf("CHANGE: PHP %.2f\n", change);
 }
 
-void getCash() {
+void getCash(float cashPaid, float total) {
 	int run = 1;
 	while(run) {
 		float cash = 0.0;
@@ -280,17 +275,9 @@ int threeChociePrompt(char prompt[], char c1[], char c2[],char c3[]) {
 	}
 }
 
-
 int reset() {
 	int run = 1;
 	int error = 0;
-	
-	orderNumber = 0;
-	discount = 0.0;
-	total = 0.0;
-	cashPaid = 0.0;
-	orderList[0][0] = 0;
-	orderList[0][1] = 0;
 	
 	while(run) {
 		

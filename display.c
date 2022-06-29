@@ -44,23 +44,23 @@ void displayOptions() {
 	displayCenterTitle("03 Exit Program\n");
 }
 
-void displayEdit(float total) {
+void displayEdit(float total, int orderList[99][2], int orderNumber) {
 	system("cls");
 	displayLogo();
 	displayBorder(WIDTH,'*');
 	displayCenterTitle("EDIT MODE\n\n");
-	listOrder();
+	listOrder(orderList, orderNumber);
 	displayBorder(WIDTH,'*');
 	displayCenterTitle("TOTAL: PHP ");
 	printf("%.2f\n",total);
 }
 
-void displayReceipt(){
+void displayReceipt(int orderList[99][2], int orderNumber, float total, float discount, float cashPaid){
 	system("cls");
 	displayLogo();
 	displayBorder(WIDTH,'*');
 	displayCenterTitle("RECEIPT\n\n");
-	listReceipt();
+	listReceipt(orderList, orderNumber, total, discount, cashPaid);
 	displayBorder(WIDTH,'*');
 }
 

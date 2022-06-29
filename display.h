@@ -8,5 +8,5 @@ void displayMenu();
 void displayOptions();
 void displayError(int allow, char erroMsg[]);
 void displayTakeOrder(float total);
-void displayEdit(float total);
-void displayReceipt();
+void displayEdit(float total,int orderList[99][2], int orderNumber);
+void displayReceipt(int orderList[99][2], int orderNumber, float total, float discount, float cashPaid);
