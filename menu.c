@@ -1,8 +1,12 @@
 #include "menu.h"
 
-//prints the item code, menu and the price
+//Prints all product items
 void listMenu() {
-	//itemCode,itemName,itemPrice
+	
+	/*
+		String array containing the item code, name and the price of the products
+		{Item code, Product name, Price}
+	*/
 	char menu[][3][ITEMLENGTH] = {
 		{"001","Banana JPhone 13", "44,990.00"},
 		{"002","Samsing Milkyway 20","27,990.00"},
@@ -80,7 +84,10 @@ float getPrice(int itemCode) {
 	return price[itemCode];
 }
 
+
 /*
+	Prints a specific menu detail depending on the itemCode
+	
 	details = 0 : item code
 	details = 1: item name
 	details = 2: item price

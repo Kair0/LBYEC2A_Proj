@@ -10,6 +10,7 @@ void displayLogo() {
 	printf("\t\t\t _| | \\_   ___]    |___ |___ |___ |___  |  |  \\ |__| | \\| | |___ ___] \n\n");
 }
 
+//prints a border depending on the input symbol
 void displayBorder(int iteration, char symbol) {
 	printf("\n");
 	for (int x = 0; x < iteration; x++ )
@@ -17,16 +18,19 @@ void displayBorder(int iteration, char symbol) {
 	printf("\n");
 }
 
+//calculates the center basedd on the text length
 void center(int textLength) {
 	for (int x = 0; x < (WIDTH/2)-(textLength/2); x++ )
 		printf(" ");
 }
 
+//displays text at the center of the console
 void displayCenterTitle(char title[]) {
 	center(strlen(title));
 	printf("%s",title);
 }
 
+//displays a fixed layout for the menu
 void displayMenu() {
 	system("cls");
 	displayLogo();
@@ -36,6 +40,7 @@ void displayMenu() {
 	displayBorder(WIDTH,'*');
 }
 
+//displays a fixed layout for the different options
 void displayOptions() {
 	displayMenu();
 	displayCenterTitle("OPTIONS\n\n");
@@ -44,6 +49,7 @@ void displayOptions() {
 	displayCenterTitle("03 Exit Program\n");
 }
 
+//displays a fixed layout for the edit screen
 void displayEdit(int orderList[99][2], int orderNumber) {
 	system("cls");
 	displayLogo();
@@ -54,6 +60,7 @@ void displayEdit(int orderList[99][2], int orderNumber) {
 	displayCenterTitle("TOTAL: PHP ");
 }
 
+//displays a fixed layout for the receipt
 void displayReceipt(int orderList[99][2], int orderNumber, float total, float discount, float cashPaid){
 	system("cls");
 	displayLogo();
@@ -62,12 +69,18 @@ void displayReceipt(int orderList[99][2], int orderNumber, float total, float di
 	listReceipt(orderList, orderNumber);
 }
 
+//displays a fixed layout for taking orders
 void displayTakeOrder(){
 	displayMenu();
 	displayCenterTitle("TOTAL: PHP ");
 	
 }
 
+/*
+	displays error message
+	allow = 1; prompts error
+	allow = 0; does not prompt error
+*/
 void displayError(int allow, char errorMsg[]) {
 	if (allow)
 		printf("%s", errorMsg);
